@@ -1,0 +1,15 @@
+<h2>Users</h2>
+<input type="text" placeholder="Search by name" [formControl]="search" />
+
+@if (store.loading()) {
+  <p>Loading...</p>
+} @else {
+  <ul>
+    @for (user of store.users() | searchFilter:searchTerm():'name'; track user.id) {
+      <li appHighlight>
+        <a [routerLink]="['/users', user.id]">{{ user.name }}</a>
+      </li>
+    }
+  </ul>
+}
+<a routerLink="/users/new">Add user</a>

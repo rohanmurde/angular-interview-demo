@@ -1,0 +1,33 @@
+<h2>User form</h2>
+<form [formGroup]="form" (ngSubmit)="submit()">
+  <label>
+    Name
+    <input type="text" formControlName="name" />
+  </label>
+
+  <label>
+    Email
+    <input type="email" formControlName="email" />
+  </label>
+  @if (form.get('email')?.errors?.['forbiddenDomain']) {
+    <p class="error">That email domain isn't allowed.</p>
+  }
+
+  <label>
+    Rating
+    <app-rating-input formControlName="rating"></app-rating-input>
+  </label>
+
+  <div formArrayName="phones">
+    <p>Phone numbers</p>
+    @for (phone of phones.controls; track $index) {
+      <div>
+        <input type="text" [formControlName]="$index" />
+        <button type="button" (click)="removePhone($index)">Remove</button>
+      </div>
+    }
+    <button type="button" (click)="addPhone()">Add phone</button>
+  </div>
+
+  <button type="submit" [disabled]="form.invalid">Save</button>
+</form>

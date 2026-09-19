@@ -1,0 +1,10 @@
+<span class="stars">
+  @for (star of stars; track star) {
+    <button
+      type="button"
+      class="star"
+      [class.filled]="star <= value"
+      [disabled]="disabled"
+      (click)="select(star)">★</button>
+  }
+</span>

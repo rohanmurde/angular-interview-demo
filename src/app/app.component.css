@@ -1,0 +1,21 @@
+header {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    align-items: center;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    padding: 1rem;
+    border-bottom: 1px solid #ddd;
+}
+nav {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+.auth-button {
+    margin-left: auto;
+}
+.container {
+    padding: 1rem;
+}

@@ -1,0 +1,20 @@
+<header>
+  <h1>Angular Interview Demo</h1>
+  <nav>
+    <a routerLink="/home">Home</a>
+    <a routerLink="/dashboard">Dashboard</a>
+    <a routerLink="/admin">Admin</a>
+    <a routerLink="/users">Users</a>
+  </nav>
+  <!-- @if (auth.isLoggedIn()) {
+  <button type="button" (click)="logout()">Log out</button>
+  } @else {
+  <button type="button" (click)="login()">Log in (demo)</button>
+  } -->
+  <button class="auth-button" type="button" (click)="toggle()">
+    {{ auth.isLoggedIn() ? 'Log out' : 'Log in' }}
+  </button>
+</header>
+<main class="container">
+  <router-outlet></router-outlet>
+</main>
