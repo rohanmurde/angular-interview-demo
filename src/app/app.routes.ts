@@ -32,6 +32,12 @@ export const routes: Routes = [
     title: 'Users',
   },
   {
+    path: 'todos',
+    loadComponent: () =>
+      import('./features/todos/todos.component').then((m) => m.TodosComponent),
+    title: 'Todos',
+  },
+  {
     path: 'users/new',
     loadComponent: () =>
       import('./features/users/user-form/user-form.component').then(

@@ -1,0 +1,60 @@
+<section class="todo-page">
+  <header class="todo-header">
+    <div>
+      <h2>Todo List</h2>
+    </div>
+    <div class="stats">
+        <h3>Showing {{ displayedTodos().length }} of {{ totalTodosFetchedCount() }}</h3>
+    </div>
+  </header>
+<!-- 
+  <div *ngIf="displayedTodos().length; else loading" class="todo-list">
+    <div *ngFor="let todo of displayedTodos(); trackBy: trackByTodoId" class="todo-item">
+      <div class="todo-check" [class.completed]="todo.completed">
+        {{ todo.completed ? '✓' : '' }}
+      </div>
+      <div class="todo-content">
+        <strong>#{{ todo.id }}</strong>
+        <p>{{ todo.title }}</p>
+      </div>
+    </div>
+  </div> -->
+
+  <div class="todo-list">
+    @if (loading()) {
+      <p class="loading">Loading todos...</p>
+    } @else if (!displayedTodos().length) {
+      <p class="no-todos">No todos to display.</p>
+    } @else {
+      @for (todo of displayedTodos(); track todo.id) {
+        <div class="todo-item">
+          <div class="todo-check" [class.completed]="todo.completed">
+            {{ todo.completed ? '✓' : '' }}
+          </div>
+          <div class="todo-content">
+            <strong>#{{ todo.id }}</strong>
+            <p>{{ todo.title }}</p>
+          </div>
+        </div>
+      }
+    }
+  </div>
+
+@if(showLoadMore()) {
+    <button
+    type="button"
+    class="load-more"
+    (click)="loadMore()"
+  >
+    Load More
+  </button>
+}
+  <!-- <button
+    *ngIf="showLoadMore()"
+    type="button"
+    class="load-more"
+    (click)="loadMore()"
+  >
+    Load More
+  </button> -->
+</section>

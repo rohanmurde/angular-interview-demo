@@ -10,6 +10,13 @@ export interface User {
   rating: number;
 }
 
+export interface Todo {
+  userId: number;
+  id: number;
+  title: string;
+  completed: boolean;
+}
+
 @Injectable({ providedIn: 'root' })
 export class ApiService {
   private readonly http = inject(HttpClient);
@@ -21,5 +28,9 @@ export class ApiService {
 
   getUser(id: number): Observable<User> {
     return this.http.get<User>(`${this.config.apiBaseUrl}/users/${id}`);
+  }
+
+  getTodos(): Observable<Todo[]> {
+    return this.http.get<Todo[]>(`${this.config.apiBaseUrl}/todos`);
   }
 }

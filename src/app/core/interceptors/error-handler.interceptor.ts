@@ -8,9 +8,9 @@ export const errorHandlerInterceptor: HttpInterceptorFn = (req, next) => {
 
   return next(req).pipe(
     catchError((error: HttpErrorResponse) => {
-      const message = error.error?.message || error.message || 'Something went wrong.';
+      const message = 'Something went wrong.';
 
-      console.error(`[HTTP Error] ${req.method} ${req.url}`, error);
+    //   console.error(`[HTTP Error] ${req.method} ${req.url}`, error);
 
       if (error.status === 401) {
         auth.logout();
