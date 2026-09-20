@@ -10,6 +10,6 @@ import { User } from '../../../core/services/api.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UserDetailComponent {
-  private readonly route = inject(ActivatedRoute);
-  readonly user = this.route.snapshot.data['user'] as User | null;
+  private readonly activatedRoute = inject(ActivatedRoute);
+  readonly user = this.activatedRoute.snapshot.data['user'] as User | null;
 }
