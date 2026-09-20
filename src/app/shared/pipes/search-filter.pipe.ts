@@ -9,9 +9,8 @@ export class SearchFilterPipe implements PipeTransform {
   transform<T>(items: T[] | null, term: string | null, field: keyof T): T[] {
     if (!items) return [];
     if (!term) return items;
-    const needle = term.toLowerCase();
     return items.filter((item) =>
-      String(item[field] ?? '').toLowerCase().includes(needle)
+      String(item[field]).toLowerCase().includes(term.toLowerCase())
     );
   }
 }
