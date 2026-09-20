@@ -24,6 +24,8 @@ export class UsersListComponent implements OnInit {
   readonly searchTerm = signal('');
 
   constructor() {
+    // takeUntilDestroyed only works in constructor and not in ngOnInit, 
+    // so we subscribe to the search input changes here.
     this.search.valueChanges
       .pipe(debounceTime(300), distinctUntilChanged(), takeUntilDestroyed())
       .subscribe((term) => this.searchTerm.set(term));

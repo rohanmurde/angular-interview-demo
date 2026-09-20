@@ -6,8 +6,8 @@
 } @else {
   <ul>
     @for (user of store.users() | searchFilter:searchTerm():'name'; track user.id) {
-      <li appHighlight>
-        <a [routerLink]="['/users', user.id]">{{ user.name }}</a>
+      <li>
+        <a [routerLink]="['/users', user.id]" [appHighlight]="'#deacf9'">{{ user.name }}</a>
       </li>
     }
   </ul>

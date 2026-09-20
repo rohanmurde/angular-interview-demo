@@ -7,7 +7,7 @@ import { Directive, ElementRef, HostListener, Input, inject } from '@angular/cor
 export class HighlightDirective {
   private readonly el = inject(ElementRef<HTMLElement>);
 
-  @Input() appHighlight = '#ffe58a';
+  @Input() appHighlight = '#deacf9';
 
   @HostListener('mouseenter')
   onMouseEnter(): void {
