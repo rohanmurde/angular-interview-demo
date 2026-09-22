@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
 import { ApiService, Todo } from '../../core/services/api.service';
-import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { debounceTime, distinctUntilChanged } from 'rxjs';
 import { SearchFilterPipe } from '../../shared/pipes/search-filter.pipe';
@@ -17,10 +17,12 @@ import { SearchFilterPipe } from '../../shared/pipes/search-filter.pipe';
 export class TodosComponent {
   private readonly api = inject(ApiService);
   
-  readonly loading = signal(false);
-  readonly todos = signal<Todo[]>([]);
-  readonly visibleCount = signal(0);
+  private readonly loading = signal(false);
+  private readonly todos = signal<Todo[]>([]);
+  private readonly visibleCount = signal(0);
 
+  // Expose the loading signal as a readonly signal to prevent external modification.
+  readonly todo_loading = this.loading.asReadonly();
   // Total number of todos fetched from the API
   readonly totalTodosFetchedCount = computed(() => this.todos().length);
   // Limit the number of todos to show to 100 or less.
@@ -32,10 +34,12 @@ export class TodosComponent {
     return this.visibleCount() < this.limitTodosToShow();
   });
   
-  readonly searchTodo = new FormControl('', { nonNullable: true });
+  readonly searchTodo: FormControl;
   readonly searchTermTodo = signal('');
+  
 
   constructor() {
+    this.searchTodo = new FormControl('', { nonNullable: true });
     // Subscribe to search input changes and update the search term signal.
     this.searchTodo.valueChanges
       .pipe(debounceTime(300), distinctUntilChanged(), takeUntilDestroyed())

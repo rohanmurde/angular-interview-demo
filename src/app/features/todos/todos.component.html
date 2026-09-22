@@ -22,7 +22,7 @@
 
   <input type="text" placeholder="Search todos" [formControl]="searchTodo" />
   <div class="todo-list">
-    @if (loading()) {
+    @if (todo_loading()) {
       <p class="loading">Loading todos...</p>
     } @else if (!displayedTodos().length) {
       <p class="no-todos">No todos to display.</p>

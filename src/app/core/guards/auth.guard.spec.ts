@@ -25,8 +25,8 @@ describe('authGuard', () => {
   });
 
   it('blocks activation and redirects home when logged out', () => {
-    const navigateSpy = spyOn(router, 'navigate');
-    expect(runGuard()).toBeFalse();
-    expect(navigateSpy).toHaveBeenCalledWith(['/home']);
+    const result = runGuard();
+
+    expect(result).toEqual(router.createUrlTree(['/home']));
   });
 });

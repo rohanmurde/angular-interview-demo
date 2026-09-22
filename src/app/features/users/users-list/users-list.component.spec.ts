@@ -3,7 +3,7 @@ import { provideHttpClient } from '@angular/common/http';
 import { provideHttpClientTesting, HttpTestingController } from '@angular/common/http/testing';
 import { provideRouter } from '@angular/router';
 import { UsersListComponent } from './users-list.component';
-import { APP_CONFIG } from '../../../core/tokens/app-config.token';
+import { APP_CONFIG } from '../../../app.config';
 
 describe('UsersListComponent', () => {
   let fixture: ComponentFixture<UsersListComponent>;
